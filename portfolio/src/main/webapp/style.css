@@ -1,13 +1,14 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 100%;
 }
 
 #greeting-container {
   margin-top: 20px;
 }
 
-img{
-    width: 200px
+.center-col {
+    text-align: -webkit-center;
+    margin: 20px 0;
 }
