@@ -69,3 +69,8 @@
 .margins {
   margin: 5vh;
 }
+
+.hideback {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
