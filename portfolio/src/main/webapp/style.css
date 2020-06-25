@@ -22,8 +22,8 @@
 
 .flip-card {
   background-color: transparent;
-  width: 45vh;
-  height: 45vh;
+  width: 60vh;
+  height: 34vh;
   perspective: 1000px;
   border: none;
 }
