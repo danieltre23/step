@@ -78,3 +78,35 @@
 .slideBack {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.galleryCard:hover {
+  animation: grow 1s forwards;
+  position: absolute;
+  z-index: 1;
+}
+
+@keyframes grow {
+  0% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 80vh;
+    height: 80vh;
+  }
+}
+
+.galleryCardLeft:hover {
+  top: 0;
+  left: 0;
+}
+
+.galleryCardCenter:hover {
+  top: 0;
+  left: -25%;
+}
+
+.galleryCardRight:hover {
+  top: 0;
+  right: 0;
+}
