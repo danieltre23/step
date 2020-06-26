@@ -12,4 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+function openModal(num){
+    $('#modalMyDog').modal('show'); 
+    document.getElementById("modalMyDogImg").src = 'images/cuky'+num+'.jpg';
+}
