@@ -22,10 +22,10 @@
 
 .flip-card {
   background-color: transparent;
-  width: 60vh;
-  height: 34vh;
   perspective: 1000px;
   border: none;
+  height: 21vw;
+  width: 37vw;
 }
 
 .flip-card-inner {
@@ -60,10 +60,11 @@
   transform: rotateY(180deg);
   height: 100%;
   border-radius: 0.25rem;
+  font-size: 1.8vw;
 }
 
 .margins {
-  margin: 5vh;
+  margin: 5%;
 }
 
 .hideback {
@@ -115,4 +116,9 @@
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
