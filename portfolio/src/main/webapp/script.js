@@ -18,7 +18,9 @@ function openModal(num){
 }
 
 let fetchFunction = () => {
-    fetch('/data').then(response => response.text()).then((data) => {
-        document.getElementById("dataContainer").innerText = data;
+    fetch('/data').then(response => response.json()).then((data) => {
+        document.getElementById("dataContainer1").innerText = data[0];
+        document.getElementById("dataContainer2").innerText = data[1];
+        document.getElementById("dataContainer3").innerText = data[2];
     })
 }
