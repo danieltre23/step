@@ -19,8 +19,15 @@ function openModal(num){
 
 let fetchFunction = () => {
     fetch('/data').then(response => response.json()).then((data) => {
-        document.getElementById("dataContainer1").innerText = data[0];
-        document.getElementById("dataContainer2").innerText = data[1];
-        document.getElementById("dataContainer3").innerText = data[2];
+        const commentsList = document.getElementById('commentsList');
+        data.forEach(element => {
+            commentsList.appendChild(createListElement(element));
+        });
     })
+}
+
+function createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
 }

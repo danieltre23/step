@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body onload="fetchFunction()">
     <div id="content">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand mb-0 h1" href="index.html">Daniel's Portfolio</a>
@@ -32,11 +32,13 @@
                 </ul>
             </div>
         </nav>
+        <ul id="commentsList"></ul>
         <div class="center-col">
-            <p id="dataContainer1"></p>
-            <p id="dataContainer2"></p>
-            <p id="dataContainer3"></p>
-            <button onclick="fetchFunction()">Get data</button>
+            <form action="/data" method="POST">
+                <p>Add comment</p>
+                <textarea name="comment"></textarea>
+                <input type="submit" />
+            </form>
         </div>
         <div class="center-col">
             <h3>Hi I'm Daniel Trevino and this is my Portfolio</h3>
