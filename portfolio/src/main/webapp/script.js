@@ -18,7 +18,8 @@ function openModal(num) {
 }
 
 function fetchFunction() {
-    fetch('/data').then(response => response.json()).then((data) => {
+    const maxComments = 3;
+    fetch('/data?maxComments='+maxComments).then(response => response.json()).then((data) => {
         const commentsList = document.getElementById('commentsList');
         data.forEach(element => {
             commentsList.appendChild(createListElement(element.text));
