@@ -118,7 +118,7 @@
   right: 10px;
 }
 
-.row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+#content .row{
+  margin-left: 0;
+  margin-right: 0;
 }
