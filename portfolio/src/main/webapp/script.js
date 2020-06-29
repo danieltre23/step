@@ -12,7 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function openModal(num){
+function openModal(num) {
     $('#modalMyDog').modal('show'); 
     document.getElementById("modalMyDogImg").src = 'images/cuky'+num+'.jpg';
+}
+
+function fetchFunction() {
+    fetch('/data').then(response => response.json()).then((data) => {
+        const commentsList = document.getElementById('commentsList');
+        data.forEach(element => {
+            commentsList.appendChild(createListElement(element));
+        });
+    })
+}
+
+function createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
 }
