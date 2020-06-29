@@ -17,7 +17,7 @@ function openModal(num){
     document.getElementById("modalMyDogImg").src = 'images/cuky'+num+'.jpg';
 }
 
-let fetchFunction = () => {
+function fetchFunction(){
     fetch('/data').then(response => response.json()).then((data) => {
         const commentsList = document.getElementById('commentsList');
         data.forEach(element => {
