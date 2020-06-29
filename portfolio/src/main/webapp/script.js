@@ -16,3 +16,9 @@ function openModal(num){
     $('#modalMyDog').modal('show'); 
     document.getElementById("modalMyDogImg").src = 'images/cuky'+num+'.jpg';
 }
+
+let fetchFunction = () => {
+    fetch('/data').then(response => response.text()).then((data) => {
+        document.getElementById("dataContainer").innerText = data;
+    })
+}
