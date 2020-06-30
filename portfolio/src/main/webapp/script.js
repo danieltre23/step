@@ -19,9 +19,9 @@ function openModal(num) {
 
 function fetchFunction() {
     const maxComments = document.getElementById('maxComments').value;
-    fetch('/data?maxComments='+maxComments).then(response => response.json()).then((data) => {
+    fetch(`/data?maxComments=${maxComments}`).then(response => response.json()).then((data) => {
         const commentsList = document.getElementById('commentsList');
-        commentsList.innerHTML = "";
+        commentsList.innerHTML = '';
         data.forEach(element => {
             commentsList.appendChild(createNewElement(element));
         });
@@ -47,10 +47,10 @@ function createNewElement({emoji, name, text, id}) {
 function deleteComments() {
     const request = new Request('/delete-data', {method: 'POST'});
     fetch(request).then(response => {
-        if(response.status = 200){
+        if(response.status === 200) {
             fetchFunction();
-        }else{
-            console.log(response);
+        }else {
+            console.error(response);
         }
     })
 }
