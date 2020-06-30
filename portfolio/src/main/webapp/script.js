@@ -23,15 +23,25 @@ function fetchFunction() {
         const commentsList = document.getElementById('commentsList');
         commentsList.innerHTML = "";
         data.forEach(element => {
-            commentsList.appendChild(createListElement(element.text));
+            commentsList.appendChild(createNewElement(element));
         });
     })
 }
 
-function createListElement(text) {
-    const liElement = document.createElement('li');
-    liElement.innerText = text;
-    return liElement;
+function createNewElement({emoji, name, text, id}) {
+    const newElement = document.createElement('div');
+    newElement.setAttribute('class', 'media margin10px');
+    newElement.setAttribute('id', id);
+    newElement.innerHTML = `
+        <img class='margin10px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
+            (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
+            width="32" height="32" color/>
+        <div class='media-body'>
+            <h5 class='mt-0'>${name}</h5>
+            ${text}
+        </div>
+    `;
+    return newElement;
 }
 
 function deleteComments() {
