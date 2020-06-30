@@ -33,3 +33,14 @@ function createListElement(text) {
     liElement.innerText = text;
     return liElement;
 }
+
+function deleteComments() {
+    const request = new Request('/delete-data', {method: 'POST'});
+    fetch(request).then(response => {
+        if(response.status = 200){
+            fetchFunction();
+        }else{
+            console.log(response);
+        }
+    })
+}
