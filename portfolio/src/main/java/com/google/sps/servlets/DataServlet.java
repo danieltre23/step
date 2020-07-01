@@ -39,6 +39,8 @@ public class DataServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", newComment);
+    commentEntity.setProperty("name", "Daniel");
+    commentEntity.setProperty("emoji", 1);
     commentEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
@@ -62,9 +64,11 @@ public class DataServlet extends HttpServlet {
       }
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("text");
+      String name = (String) entity.getProperty("name");
+      int emoji = Math.toIntExact( (long) entity.getProperty("emoji"));
       long timestamp = (long) entity.getProperty("timestamp");
 
-      Comment newComment = new Comment(id, title, timestamp);
+      Comment newComment = new Comment(id, title, name, emoji, timestamp);
       comments.add(newComment);
       i++;
     }
