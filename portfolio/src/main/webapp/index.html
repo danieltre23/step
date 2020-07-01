@@ -34,11 +34,14 @@
         </nav>
         <ul id="commentsList"></ul>
         <div class="center-col">
+            <label for="quantity">Maximnum number of comments:</label>
+            <input type="number" id="maxComments" min="0" max="10" value="3" onchange="fetchFunction()"/>
             <form action="/data" method="POST">
                 <p>Add comment</p>
                 <textarea name="comment"></textarea>
                 <input type="submit" />
             </form>
+            <button onclick="deleteComments()">Delete all comments</button>
         </div>
         <div class="center-col">
             <h3>Hi I'm Daniel Trevino and this is my Portfolio</h3>

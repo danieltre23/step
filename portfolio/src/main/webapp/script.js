@@ -18,8 +18,10 @@ function openModal(num) {
 }
 
 function fetchFunction() {
-    fetch('/data').then(response => response.json()).then((data) => {
+    const maxComments = document.getElementById('maxComments').value;
+    fetch(`/data?maxComments=${maxComments}`).then(response => response.json()).then((data) => {
         const commentsList = document.getElementById('commentsList');
+        commentsList.innerHTML = '';
         data.forEach(element => {
             commentsList.appendChild(createListElement(element.text));
         });
@@ -30,4 +32,15 @@ function createListElement(text) {
     const liElement = document.createElement('li');
     liElement.innerText = text;
     return liElement;
+}
+
+function deleteComments() {
+    const request = new Request('/delete-data', {method: 'POST'});
+    fetch(request).then(response => {
+        if (response.status === 200) {
+            fetchFunction();
+        } else {
+            console.error(response);
+        }
+    })
 }
