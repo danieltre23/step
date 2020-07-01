@@ -126,3 +126,8 @@
 .margin10px {
   margin: 10px;
 }
+
+.autoMargin {
+  margin-top: auto;
+  margin-bottom: auto;
+}
