@@ -37,9 +37,9 @@ function createListElement(text) {
 function deleteComments() {
     const request = new Request('/delete-data', {method: 'POST'});
     fetch(request).then(response => {
-        if(response.status === 200) {
+        if (response.status === 200) {
             fetchFunction();
-        }else {
+        } else {
             console.error(response);
         }
     })
