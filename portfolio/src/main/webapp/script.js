@@ -53,7 +53,7 @@ function deleteComments() {
 }
 
 function deleteCommentByKey(key) {
-    const request = new Request(`/delete-comment?key=${key}`, {method: 'POST'} );
+    const request = new Request('/delete-comment', {method: 'POST', body: key} );
     fetchRequestAndReload(request);
 }
 
