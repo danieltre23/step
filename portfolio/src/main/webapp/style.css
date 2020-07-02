@@ -144,3 +144,11 @@
   justify-content: center;
   display: flex;
 }
+
+input:checked + .emojis {
+  background-color: green;
+}
+
+.hide {
+  display: none;
+}

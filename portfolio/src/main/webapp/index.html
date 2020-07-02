@@ -156,13 +156,22 @@
             <form action="/data" method="POST" class="width80pc">
                 <div class="justifyCenter">
                     <div class="emojiPicker">
-                        <img class='margin10px' src='icons/emoji-smile.svg' width="32" height="32"/>
-                        <img class='margin10px' src='icons/emoji-neutral.svg' width="32" height="32"/>
-                        <img class='margin10px' src='icons/emoji-frown.svg' width="32" height="32"/>
+                        <input checked id="emoji1" type="radio" name="emoji" value="1" class="hide">
+                        <label for="emoji1" class='margin10px emojis' width="32" height="32">
+                            <img src='icons/emoji-smile.svg' width="32" height="32"/>
+                        </label>
+                        <input id="emoji2" type="radio" name="emoji" value="2" class="hide">
+                        <label for="emoji2" class='margin10px emojis' width="32" height="32">
+                            <img src='icons/emoji-neutral.svg' width="32" height="32"/>
+                        </label>
+                        <input id="emoji3" type="radio" name="emoji" value="3" class="hide">
+                        <label for="emoji3" class='margin10px emojis' width="32" height="32">
+                            <img src='icons/emoji-frown.svg' width="32" height="32"/>
+                        </label>
                     </div>
                     <div class='media-body'>
-                        <input class="form-control margin10px" placeholder="Name...">
-                        <textarea name="comment" class="form-control margin10px" rows="3" placeholder="Comment..."></textarea>
+                        <input required name="name" class="form-control margin10px" placeholder="Name...">
+                        <textarea required name="comment" class="form-control margin10px" rows="3" placeholder="Comment..."></textarea>
                     </div>
                 </div>
                 <div class="justifyCenter">
