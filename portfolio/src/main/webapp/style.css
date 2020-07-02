@@ -131,3 +131,16 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.width80pc {
+  width: 80%;
+}
+
+.emojiPicker {
+  display: grid;
+}
+
+.justifyCenter {
+  justify-content: center;
+  display: flex;
+}

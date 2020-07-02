@@ -24,6 +24,7 @@ function fetchFunction() {
         commentsList.innerHTML = '';
         data.forEach(element => {
             commentsList.appendChild(createNewElement(element));
+            commentsList.appendChild(document.createElement('hr'));
         });
     })
 }
@@ -36,7 +37,7 @@ function createNewElement({key, emoji, name, text, id}) {
         <img class='margin10px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
             (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
             width="32" height="32"/>
-        <div class='media-body'>
+        <div class='media-body margin10px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
         </div>
