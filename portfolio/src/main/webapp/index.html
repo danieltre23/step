@@ -152,37 +152,43 @@
     <div class="justifyCenter">
         <div class="width80pc" id="commentsList"></div>
     </div>
-    <div class="media margin10px justifyCenter">
-            <form action="/data" method="POST" class="width80pc">
-                <div class="justifyCenter">
-                    <div class="emojiPicker">
-                        <input checked id="emoji1" type="radio" name="emoji" value="1" class="hide">
-                        <label for="emoji1" class='margin10px emojis' width="32" height="32">
-                            <img src='icons/emoji-smile.svg' width="32" height="32"/>
-                        </label>
-                        <input id="emoji2" type="radio" name="emoji" value="2" class="hide">
-                        <label for="emoji2" class='margin10px emojis' width="32" height="32">
-                            <img src='icons/emoji-neutral.svg' width="32" height="32"/>
-                        </label>
-                        <input id="emoji3" type="radio" name="emoji" value="3" class="hide">
-                        <label for="emoji3" class='margin10px emojis' width="32" height="32">
-                            <img src='icons/emoji-frown.svg' width="32" height="32"/>
-                        </label>
-                    </div>
-                    <div class='media-body'>
-                        <input required name="name" class="form-control margin10px" placeholder="Name...">
-                        <textarea required name="comment" class="form-control margin10px" rows="3" placeholder="Comment..."></textarea>
-                    </div>
+    <div class="commentNum marginRight10px">
+        <label for="maxComments" class="marginRight10px">Number of comments:</label>
+        <select class="custom-select marginRight10px" id="maxComments" onchange="fetchFunction()">
+            <option selected value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="justifyCenter">
+        <button class="btn btn-dark" onclick="deleteComments()">Delete all</button>
+    </div>
+    <div class="media padding10px justifyCenter">
+        <form action="/data" method="POST" class="width80pc">
+            <div class="justifyCenter">
+                <div class="emojiPicker">
+                    <input checked id="emoji1" type="radio" name="emoji" value="1" class="hide">
+                    <label for="emoji1" class='margin10px emojis' width="32" height="32">
+                        <img src='icons/emoji-smile.svg' width="32" height="32"/>
+                    </label>
+                    <input id="emoji2" type="radio" name="emoji" value="2" class="hide">
+                    <label for="emoji2" class='margin10px emojis' width="32" height="32">
+                        <img src='icons/emoji-neutral.svg' width="32" height="32"/>
+                    </label>
+                    <input id="emoji3" type="radio" name="emoji" value="3" class="hide">
+                    <label for="emoji3" class='margin10px emojis' width="32" height="32">
+                        <img src='icons/emoji-frown.svg' width="32" height="32"/>
+                    </label>
                 </div>
-                <div class="justifyCenter">
-                    <input type="submit" />
+                <div class='media-body'>
+                    <input required name="name" class="form-control margin10px" placeholder="Name...">
+                    <textarea required name="comment" class="form-control margin10px" rows="3" placeholder="Comment..."></textarea>
                 </div>
-            </form>
-        </div>
-        <label for="quantity">Maximnum number of comments:</label>
-        <input type="number" id="maxComments" min="0" max="10" value="3" onchange="fetchFunction()"/>
-            
-        <button onclick="deleteComments()">Delete all comments</button>
+            </div>
+            <div class="justifyCenter">
+                <input class="btn btn-dark" type="submit" />
+            </div>
+        </form>
     </div>
   </footer>
 </html>

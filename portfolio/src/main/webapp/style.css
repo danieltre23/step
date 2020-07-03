@@ -145,10 +145,45 @@
   display: flex;
 }
 
+.emojis {
+  opacity: 25%;
+}
+
 input:checked + .emojis {
-  background-color: green;
+  opacity: 100%;
 }
 
 .hide {
   display: none;
+}
+
+img + .trash {
+  color: red;
+}
+
+footer {
+  background-color: lightgray;
+}
+
+.commentNum {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+}
+
+.commentNum .custom-select {
+  width: 70px;
+}
+
+.commentNum label {
+  margin-bottom: 0;
+}
+
+.marginRight10px {
+  margin-right: 10px;
+}
+
+.padding10px {
+  padding: 10px;
 }
