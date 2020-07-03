@@ -20,6 +20,9 @@ function openModal(num) {
 function fetchFunction() {
     const maxComments = document.getElementById('maxComments').value;
     fetch(`/data?maxComments=${maxComments}`).then(response => response.json()).then((data) => {
+        if (data.length === 0) {
+            document.getElementById('commentDependent').setAttribute('class', 'hide');
+        }
         const commentsList = document.getElementById('commentsList');
         commentsList.innerHTML = '';
         data.forEach(element => {
