@@ -12,24 +12,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+let commentsArray = [];
+let start = 0;
+
 function openModal(num) {
     $('#modalMyDog').modal('show'); 
     document.getElementById("modalMyDogImg").src = 'images/cuky'+num+'.jpg';
 }
 
 function fetchFunction() {
-    const maxComments = document.getElementById('maxComments').value;
-    fetch(`/data?maxComments=${maxComments}`).then(response => response.json()).then((data) => {
-        if (data.length === 0) {
+    fetch('/data').then(response => response.json()).then((data) => {
+        commentsArray = data;
+        start = 0;
+        if (commentsArray.length === 0) {
             document.getElementById('commentDependent').setAttribute('class', 'hide');
         }
-        const commentsList = document.getElementById('commentsList');
-        commentsList.innerHTML = '';
-        data.forEach(element => {
-            commentsList.appendChild(createNewElement(element));
-            commentsList.appendChild(document.createElement('hr'));
-        });
+        assginCommentsToUI();
     })
+}
+
+function assginCommentsToUI() {
+    if (start === 0) {
+        document.getElementById('arrowUp').setAttribute('class', 'hide');
+    } else {
+        document.getElementById('arrowUp').setAttribute('class', 'justifyCenter');
+    }
+    const maxComments = parseInt(document.getElementById('maxComments').value);
+    if (commentsArray.length <= start+maxComments) {
+        document.getElementById('arrowDown').setAttribute('class', 'hide');
+    } else {
+        document.getElementById('arrowDown').setAttribute('class', 'justifyCenter');
+    } 
+    const commentsList = document.getElementById('commentsList');
+    commentsList.innerHTML = '';
+    for (let i = start; i < start+maxComments && i < commentsArray.length; i++) {
+        commentsList.appendChild(createNewElement(commentsArray[i]));
+        commentsList.appendChild(document.createElement('hr'));
+    }
 }
 
 function createNewElement({key, emoji, name, text, id}) {
@@ -69,4 +88,14 @@ function fetchRequestAndReload(request) {
             console.error(response);
         }
     })
+}
+
+function changeCommentPage(forward) {
+    const maxComments = parseInt(document.getElementById('maxComments').value);
+    if (forward) {
+        start += maxComments;
+    } else {
+        start -= maxComments;
+    }
+    assginCommentsToUI();
 }
