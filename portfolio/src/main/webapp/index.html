@@ -149,23 +149,23 @@
     </div>
   </body>
   <footer>
-    <div class="justifyCenter" id="arrowUp">
+    <div class="justify-center" id="arrowUp">
         <button class="btn" onClick="changeCommentPage(false)">
-            <img class='autoMargin' src='icons/arrow-up.svg' width="20" height="20"/>
+            <img class='auto-margin' src='icons/arrow-up.svg' width="20" height="20"/>
         </button>
     </div>
-    <div class="justifyCenter">
-        <div class="width80pc" id="commentsList"></div>
+    <div class="justify-center">
+        <div class="width-80-pc" id="commentsList"></div>
     </div>
-    <div class="justifyCenter" id="arrowDown">
+    <div class="justify-center" id="arrowDown">
         <button class="btn" onClick="changeCommentPage(true)">
-            <img class='autoMargin' src='icons/arrow-down.svg' width="20" height="20"/>
+            <img class='auto-margin' src='icons/arrow-down.svg' width="20" height="20"/>
         </button>
     </div>
     <div id="commentDependent">
-        <div class="commentNum marginRight10px">
-            <label for="maxComments" class="marginRight10px">Number of comments:</label>
-            <select class="custom-select marginRight10px" id="maxComments" onchange="fetchFunction()">
+        <div class="comment-num margin-right-10-px">
+            <label for="maxComments" class="margin-right-10-px">Number of comments:</label>
+            <select class="custom-select margin-right-10-px" id="maxComments" onchange="fetchFunction()">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option selected value="3">3</option>
@@ -178,33 +178,33 @@
                 <option value="10">10</option>
             </select>
         </div>
-        <div class="justifyCenter">
+        <div class="justify-center">
             <button class="btn btn-dark" onclick="deleteComments()">Delete all</button>
         </div>
     </div>
-    <div class="media padding10px justifyCenter">
-        <form action="/data" method="POST" class="width80pc">
-            <div class="justifyCenter">
-                <div class="emojiPicker">
+    <div class="media padding-10-px justify-center">
+        <form action="/data" method="POST" class="width-80-pc">
+            <div class="justify-center">
+                <div class="emoji-picker">
                     <input checked id="emoji1" type="radio" name="emoji" value="1" class="hide">
-                    <label for="emoji1" class='margin10px emojis' width="32" height="32">
+                    <label for="emoji1" class='margin-10-px emojis' width="32" height="32">
                         <img src='icons/emoji-smile.svg' width="32" height="32"/>
                     </label>
                     <input id="emoji2" type="radio" name="emoji" value="2" class="hide">
-                    <label for="emoji2" class='margin10px emojis' width="32" height="32">
+                    <label for="emoji2" class='margin-10-px emojis' width="32" height="32">
                         <img src='icons/emoji-neutral.svg' width="32" height="32"/>
                     </label>
                     <input id="emoji3" type="radio" name="emoji" value="3" class="hide">
-                    <label for="emoji3" class='margin10px emojis' width="32" height="32">
+                    <label for="emoji3" class='margin-10-px emojis' width="32" height="32">
                         <img src='icons/emoji-frown.svg' width="32" height="32"/>
                     </label>
                 </div>
                 <div class='media-body'>
-                    <input required name="name" class="form-control margin10px" placeholder="Name...">
-                    <textarea required name="comment" class="form-control margin10px" rows="3" placeholder="Comment..."></textarea>
+                    <input required name="name" class="form-control margin-10-px" placeholder="Name...">
+                    <textarea required name="comment" class="form-control margin-10-px" rows="3" placeholder="Comment..."></textarea>
                 </div>
             </div>
-            <div class="justifyCenter">
+            <div class="justify-center">
                 <input class="btn btn-dark" type="submit" />
             </div>
         </form>
