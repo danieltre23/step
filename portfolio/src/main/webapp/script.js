@@ -12,36 +12,59 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+let commentsArray = [];
+let start = 0;
+
 function openModal(num) {
     $('#modalMyDog').modal('show'); 
     document.getElementById("modalMyDogImg").src = 'images/cuky'+num+'.jpg';
 }
 
 function fetchFunction() {
-    const maxComments = document.getElementById('maxComments').value;
-    fetch(`/data?maxComments=${maxComments}`).then(response => response.json()).then((data) => {
-        const commentsList = document.getElementById('commentsList');
-        commentsList.innerHTML = '';
-        data.forEach(element => {
-            commentsList.appendChild(createNewElement(element));
-        });
+    fetch('/data').then(response => response.json()).then((data) => {
+        commentsArray = data;
+        start = 0;
+        if (commentsArray.length === 0) {
+            document.getElementById('commentDependent').setAttribute('class', 'hide');
+        }
+        assginCommentsToUI();
     })
+}
+
+function assginCommentsToUI() {
+    if (start === 0) {
+        document.getElementById('arrowUp').setAttribute('class', 'hide');
+    } else {
+        document.getElementById('arrowUp').setAttribute('class', 'justifyCenter');
+    }
+    const maxComments = parseInt(document.getElementById('maxComments').value);
+    if (commentsArray.length <= start+maxComments) {
+        document.getElementById('arrowDown').setAttribute('class', 'hide');
+    } else {
+        document.getElementById('arrowDown').setAttribute('class', 'justifyCenter');
+    } 
+    const commentsList = document.getElementById('commentsList');
+    commentsList.innerHTML = '';
+    for (let i = start; i < start+maxComments && i < commentsArray.length; i++) {
+        commentsList.appendChild(createNewElement(commentsArray[i]));
+        commentsList.appendChild(document.createElement('hr'));
+    }
 }
 
 function createNewElement({key, emoji, name, text, id}) {
     const newElement = document.createElement('div');
-    newElement.setAttribute('class', 'media margin10px');
+    newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);
     newElement.innerHTML = `
-        <img class='margin10px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
+        <img class='margin-10-px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
             (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
             width="32" height="32"/>
-        <div class='media-body'>
+        <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
-            <img class='autoMargin' src='icons/trash.svg' width="20" height="20"/>
+            <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>
         </button>
     `;
     return newElement;
@@ -65,4 +88,14 @@ function fetchRequestAndReload(request) {
             console.error(response);
         }
     })
+}
+
+function changeCommentPage(forward) {
+    const maxComments = parseInt(document.getElementById('maxComments').value);
+    if (forward) {
+        start += maxComments;
+    } else {
+        start -= maxComments;
+    }
+    assginCommentsToUI();
 }

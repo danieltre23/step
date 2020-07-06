@@ -37,11 +37,13 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String newComment = request.getParameter("comment");
+    String name = request.getParameter("name");
+    int emoji = Integer.parseInt(request.getParameter("emoji"));
     long timestamp = System.currentTimeMillis();
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", newComment);
-    commentEntity.setProperty("name", "Daniel");
-    commentEntity.setProperty("emoji", 1);
+    commentEntity.setProperty("name", name);
+    commentEntity.setProperty("emoji", emoji);
     commentEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
@@ -52,17 +54,12 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    int maxComments = Integer.parseInt(request.getParameter("maxComments"));
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<Comment> comments = new ArrayList<>();
-    int i = 0;
     for (Entity entity : results.asIterable()) {
-      if(maxComments <= i){
-        break;
-      }
       String key = KeyFactory.keyToString(entity.getKey());
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("text");
@@ -72,7 +69,6 @@ public class DataServlet extends HttpServlet {
 
       Comment newComment = new Comment(key, id, title, name, emoji, timestamp);
       comments.add(newComment);
-      i++;
     }
     
     response.setContentType("text/json;");
