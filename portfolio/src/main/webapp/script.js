@@ -34,18 +34,18 @@ function fetchFunction() {
 
 function createNewElement({key, emoji, name, text, id}) {
     const newElement = document.createElement('div');
-    newElement.setAttribute('class', 'media margin10px');
+    newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);
     newElement.innerHTML = `
-        <img class='margin10px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
+        <img class='margin-10-px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
             (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
             width="32" height="32"/>
-        <div class='media-body margin10px'>
+        <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
-            <img class='autoMargin' src='icons/trash.svg' width="20" height="20"/>
+            <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>
         </button>
     `;
     return newElement;

@@ -76,11 +76,11 @@
   width: 60%;
 }
 
-.slideBack {
+.slide-back {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.galleryCard:hover {
+.gallery-card:hover {
   animation: grow 1s forwards;
   position: absolute;
   z-index: 1;
@@ -97,22 +97,22 @@
   }
 }
 
-.galleryCardLeft:hover {
+.gallery-card-left:hover {
   top: 0;
   left: 0;
 }
 
-.galleryCardCenter:hover {
+.gallery-card-center:hover {
   top: 0;
   left: -25%;
 }
 
-.galleryCardRight:hover {
+.gallery-card-right:hover {
   top: 0;
   right: 0;
 }
 
-.closeBtn {
+.close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -123,24 +123,24 @@
   margin-right: 0;
 }
 
-.margin10px {
+.margin-10-px {
   margin: 10px;
 }
 
-.autoMargin {
+.auto-margin {
   margin-top: auto;
   margin-bottom: auto;
 }
 
-.width80pc {
+.width-80-pc {
   width: 80%;
 }
 
-.emojiPicker {
+.emoji-picker {
   display: grid;
 }
 
-.justifyCenter {
+.justify-center {
   justify-content: center;
   display: flex;
 }
@@ -165,25 +165,25 @@ footer {
   background-color: lightgray;
 }
 
-.commentNum {
+.comment-num {
   position: absolute;
   display: flex;
   align-items: center;
   right: 0;
 }
 
-.commentNum .custom-select {
+.comment-num .custom-select {
   width: 70px;
 }
 
-.commentNum label {
+.comment-num label {
   margin-bottom: 0;
 }
 
-.marginRight10px {
+.margin-right-10-px {
   margin-right: 10px;
 }
 
-.padding10px {
+.padding-10-px {
   padding: 10px;
 }
