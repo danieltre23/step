@@ -28,6 +28,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.sps.data.Comment;
+import com.google.appengine.api.datastore.KeyFactory;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -62,13 +63,14 @@ public class DataServlet extends HttpServlet {
       if(maxComments <= i){
         break;
       }
+      String key = KeyFactory.keyToString(entity.getKey());
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("text");
       String name = (String) entity.getProperty("name");
       int emoji = Math.toIntExact( (long) entity.getProperty("emoji"));
       long timestamp = (long) entity.getProperty("timestamp");
 
-      Comment newComment = new Comment(id, title, name, emoji, timestamp);
+      Comment newComment = new Comment(key, id, title, name, emoji, timestamp);
       comments.add(newComment);
       i++;
     }

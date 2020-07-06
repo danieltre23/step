@@ -28,24 +28,36 @@ function fetchFunction() {
     })
 }
 
-function createNewElement({emoji, name, text, id}) {
+function createNewElement({key, emoji, name, text, id}) {
     const newElement = document.createElement('div');
     newElement.setAttribute('class', 'media margin10px');
     newElement.setAttribute('id', id);
     newElement.innerHTML = `
         <img class='margin10px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
             (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
-            width="32" height="32" color/>
+            width="32" height="32"/>
         <div class='media-body'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
         </div>
+        <button class="btn" onClick="deleteCommentByKey('${key}')">
+            <img class='autoMargin' src='icons/trash.svg' width="20" height="20"/>
+        </button>
     `;
     return newElement;
 }
 
 function deleteComments() {
     const request = new Request('/delete-data', {method: 'POST'});
+    fetchRequestAndReload(request);
+}
+
+function deleteCommentByKey(key) {
+    const request = new Request('/delete-comment', {method: 'POST', body: key} );
+    fetchRequestAndReload(request);
+}
+
+function fetchRequestAndReload(request) {
     fetch(request).then(response => {
         if (response.status === 200) {
             fetchFunction();
