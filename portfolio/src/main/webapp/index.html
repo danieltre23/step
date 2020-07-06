@@ -149,14 +149,23 @@
     </div>
   </body>
   <footer>
+    <div class="justify-center" id="arrowUp">
+        <button class="btn" onClick="changeCommentPage(false)">
+            <img class='auto-margin' src='icons/arrow-up.svg' width="20" height="20"/>
+        </button>
+    </div>
     <div class="justify-center">
         <div class="width-80-pc" id="commentsList"></div>
+    </div>
+    <div class="justify-center" id="arrowDown">
+        <button class="btn" onClick="changeCommentPage(true)">
+            <img class='auto-margin' src='icons/arrow-down.svg' width="20" height="20"/>
+        </button>
     </div>
     <div id="commentDependent">
         <div class="comment-num margin-right-10-px">
             <label for="maxComments" class="margin-right-10-px">Number of comments:</label>
             <select class="custom-select margin-right-10-px" id="maxComments" onchange="fetchFunction()">
-                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option selected value="3">3</option>
