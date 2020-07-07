@@ -28,7 +28,10 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.sps.data.Comment;
+import com.google.sps.data.ServerResponse;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -70,12 +73,24 @@ public class DataServlet extends HttpServlet {
       Comment newComment = new Comment(key, id, title, name, emoji, timestamp);
       comments.add(newComment);
     }
+
+    UserService userService = UserServiceFactory.getUserService();
+    String userEmail = null;
+    String url = null;
+    if (userService.isUserLoggedIn()) {
+      userEmail = userService.getCurrentUser().getEmail();
+      url = userService.createLogoutURL("/");
+    } else {
+      url = userService.createLoginURL("/");
+    }
     
+    ServerResponse resp = new ServerResponse(comments, userEmail, url);
+
     response.setContentType("text/json;");
-    response.getWriter().println(convertToJsonUsingGson(comments));
+    response.getWriter().println(convertToJsonUsingGson(resp));
   }
 
-  private String convertToJsonUsingGson(ArrayList list) {
+  private String convertToJsonUsingGson(ServerResponse list) {
     Gson gson = new Gson();
     return gson.toJson(list);
   }
