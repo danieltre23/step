@@ -32,14 +32,12 @@ function fetchFunction() {
         if (!data.user) {
             document.getElementById('commentForm').setAttribute('class', 'hide');
             document.getElementById('loginBtn').setAttribute('href', data.url);
-            console.log("no user");
         } else {
             document.getElementById("commentUser").value = data.user;
             document.getElementById("hiddenUser").value = data.user;
             document.getElementById('commentForm').setAttribute('class', 'text-center padding-10-px');
             document.getElementById('loginDiv').setAttribute('class', 'hide');
             document.getElementById('logoutBtn').setAttribute('href', data.url);
-            console.log(data.user);
         }
 
     })
