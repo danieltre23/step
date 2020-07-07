@@ -22,12 +22,27 @@ function openModal(num) {
 
 function fetchFunction() {
     fetch('/data').then(response => response.json()).then((data) => {
-        commentsArray = data;
+        commentsArray = data.comments;
         start = 0;
         if (commentsArray.length === 0) {
             document.getElementById('commentDependent').setAttribute('class', 'hide');
         }
         assginCommentsToUI();
+
+        if (!data.user) {
+            document.getElementById('commentForm').setAttribute('class', 'hide');
+            document.getElementById('loginDiv').setAttribute('class', 'justify-center');
+            document.getElementById('loginBtn').setAttribute('href', data.url);
+            console.log("no user");
+        }else {
+            document.getElementById("commentUser").value = data.user;
+            document.getElementById("hiddenUser").value = data.user;
+            document.getElementById('commentForm').setAttribute('class', 'media padding-10-px justify-center');
+            document.getElementById('loginDiv').setAttribute('class', 'hide');
+            document.getElementById('logoutBtn').setAttribute('href', data.url);
+            console.log(data.user);
+        }
+
     })
 }
 

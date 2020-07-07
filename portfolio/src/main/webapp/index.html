@@ -182,7 +182,10 @@
             <button class="btn btn-dark" onclick="deleteComments()">Delete all</button>
         </div>
     </div>
-    <div class="media padding-10-px justify-center">
+    <div id="loginDiv" class="justify-center">
+        <a class="btn" id="loginBtn">Login</a>
+    </div>
+    <div id="commentForm" class="media padding-10-px justify-center">
         <form action="/data" method="POST" class="width-80-pc">
             <div class="justify-center">
                 <div class="emoji-picker">
@@ -200,14 +203,16 @@
                     </label>
                 </div>
                 <div class='media-body'>
-                    <input required name="name" class="form-control margin-10-px" placeholder="Name...">
-                    <textarea required name="comment" class="form-control margin-10-px" rows="3" placeholder="Comment..."></textarea>
+                    <input id="hiddenUser" name="name" type="hidden">
+                    <input id="commentUser" disabled class="form-control margin-10-px">
+                    <textarea value="cool" required name="comment" class="form-control margin-10-px" rows="3" placeholder="Comment..."></textarea>
                 </div>
             </div>
             <div class="justify-center">
                 <input class="btn btn-dark" type="submit" />
             </div>
         </form>
+        <a class="btn" id="logoutBtn">Logout</a>
     </div>
   </footer>
 </html>
