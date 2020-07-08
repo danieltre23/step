@@ -76,7 +76,7 @@ function createNewElement({key, name, text, id, sentimentScore, imageUrl}) {
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
-            ${imageUrl ? ` <a href="${imageUrl}"> <img src="${imageUrl}"/> <a/>` : null}
+            ${imageUrl ? ` <a href="${imageUrl}"> <img src="${imageUrl}"/> <a/>` : ""}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
             <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>

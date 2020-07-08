@@ -95,7 +95,7 @@ public class DataServlet extends HttpServlet {
       double sentimentScore = (double) entity.getProperty("sentimentScore");
       String imageUrl = (String) entity.getProperty("imageUrl");
 
-      Comment newComment = new Comment(key, id, title, name, emoji, timestamp, sentimentScore, imageUrl);
+      Comment newComment = new Comment(key, id, title, name, timestamp, sentimentScore, imageUrl);
       comments.add(newComment);
     }
 

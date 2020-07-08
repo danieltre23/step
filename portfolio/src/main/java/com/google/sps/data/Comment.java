@@ -10,7 +10,7 @@ public final class Comment {
   private final double sentimentScore;
   private final String imageUrl;
 
-  public Comment(String key, long id, String text, String name, int emoji, long timestamp, double sentimentScore, String imageUrl) {
+  public Comment(String key, long id, String text, String name, long timestamp, double sentimentScore, String imageUrl) {
     this.key = key;
     this.id = id;
     this.text = text;
