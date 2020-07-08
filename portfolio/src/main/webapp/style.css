@@ -136,21 +136,9 @@
   width: 80%;
 }
 
-.emoji-picker {
-  display: grid;
-}
-
 .justify-center {
   justify-content: center;
   display: flex;
-}
-
-.emojis {
-  opacity: 25%;
-}
-
-input:checked + .emojis {
-  opacity: 100%;
 }
 
 .hide {
@@ -190,4 +178,8 @@ footer {
 
 .text-center {
   text-align: center;
+}
+
+.margin-10-top-bottom {
+  margin: 10px 0;
 }

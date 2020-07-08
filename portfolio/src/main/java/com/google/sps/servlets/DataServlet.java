@@ -44,12 +44,10 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String newComment = request.getParameter("comment");
     String name = request.getParameter("name");
-    int emoji = Integer.parseInt(request.getParameter("emoji"));
     long timestamp = System.currentTimeMillis();
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", newComment);
     commentEntity.setProperty("name", name);
-    commentEntity.setProperty("emoji", emoji);
     commentEntity.setProperty("timestamp", timestamp);
 
     Document doc = Document.newBuilder().setContent(newComment).setType(Document.Type.PLAIN_TEXT).build();
@@ -78,11 +76,10 @@ public class DataServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("text");
       String name = (String) entity.getProperty("name");
-      int emoji = Math.toIntExact( (long) entity.getProperty("emoji"));
       long timestamp = (long) entity.getProperty("timestamp");
       double sentimentScore = (double) entity.getProperty("sentimentScore");
 
-      Comment newComment = new Comment(key, id, title, name, emoji, timestamp, sentimentScore);
+      Comment newComment = new Comment(key, id, title, name, timestamp, sentimentScore);
       comments.add(newComment);
     }
 

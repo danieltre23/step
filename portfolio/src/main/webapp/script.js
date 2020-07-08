@@ -47,13 +47,13 @@ function assginCommentsToUI() {
     if (start === 0) {
         document.getElementById('arrowUp').setAttribute('class', 'hide');
     } else {
-        document.getElementById('arrowUp').setAttribute('class', 'justifyCenter');
+        document.getElementById('arrowUp').setAttribute('class', 'justify-center');
     }
     const maxComments = parseInt(document.getElementById('maxComments').value);
     if (commentsArray.length <= start+maxComments) {
         document.getElementById('arrowDown').setAttribute('class', 'hide');
     } else {
-        document.getElementById('arrowDown').setAttribute('class', 'justifyCenter');
+        document.getElementById('arrowDown').setAttribute('class', 'justify-center');
     } 
     const commentsList = document.getElementById('commentsList');
     commentsList.innerHTML = '';
@@ -63,7 +63,7 @@ function assginCommentsToUI() {
     }
 }
 
-function createNewElement({key, emoji, name, text, id, sentimentScore}) {
+function createNewElement({key, name, text, id, sentimentScore}) {
     const newElement = document.createElement('div');
     newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);

@@ -190,26 +190,10 @@
     <div id="commentForm" class="text-center padding-10-px">
         <div class="media padding-10-px justify-center">
             <form action="/data" method="POST" class="width-80-pc">
-                <div class="justify-center">
-                    <div class="emoji-picker">
-                        <input checked id="emoji1" type="radio" name="emoji" value="1" class="hide">
-                        <label for="emoji1" class='margin-10-px emojis' width="32" height="32">
-                            <img src='icons/emoji-smile.svg' width="32" height="32"/>
-                        </label>
-                        <input id="emoji2" type="radio" name="emoji" value="2" class="hide">
-                        <label for="emoji2" class='margin-10-px emojis' width="32" height="32">
-                            <img src='icons/emoji-neutral.svg' width="32" height="32"/>
-                        </label>
-                        <input id="emoji3" type="radio" name="emoji" value="3" class="hide">
-                        <label for="emoji3" class='margin-10-px emojis' width="32" height="32">
-                            <img src='icons/emoji-frown.svg' width="32" height="32"/>
-                        </label>
-                    </div>
-                    <div class='media-body'>
-                        <input id="hiddenUser" name="name" type="hidden">
-                        <input id="commentUser" disabled class="form-control margin-10-px">
-                        <textarea value="cool" required name="comment" class="form-control margin-10-px" rows="3" placeholder="Comment..."></textarea>
-                    </div>
+                <div class='media-body'>
+                    <input id="hiddenUser" name="name" type="hidden">
+                    <input id="commentUser" disabled class="form-control margin-10-top-bottom">
+                    <textarea value="cool" required name="comment" class="form-control margin-10-top-bottom" rows="3" placeholder="Comment..."></textarea>
                 </div>
                 <div class="justify-center">
                     <input class="btn btn-dark" type="submit" />
