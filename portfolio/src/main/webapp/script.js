@@ -63,13 +63,13 @@ function assginCommentsToUI() {
     }
 }
 
-function createNewElement({key, emoji, name, text, id}) {
+function createNewElement({key, emoji, name, text, id, sentimentScore}) {
     const newElement = document.createElement('div');
     newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);
     newElement.innerHTML = `
-        <img class='margin-10-px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
-            (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
+        <img class='margin-10-px' ${sentimentScore >= 0.45 ? ("src='icons/emoji-smile.svg'") : 
+            (sentimentScore <= -0.45 ? "src='icons/emoji-frown.svg'" : "src='icons/emoji-neutral.svg'")} 
             width="32" height="32"/>
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>

@@ -32,6 +32,9 @@ import com.google.sps.data.ServerResponse;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -48,6 +51,14 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("emoji", emoji);
     commentEntity.setProperty("timestamp", timestamp);
+
+    Document doc = Document.newBuilder().setContent(newComment).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    float score = sentiment.getScore();
+    languageService.close();
+    commentEntity.setProperty("sentimentScore", score);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
@@ -69,8 +80,9 @@ public class DataServlet extends HttpServlet {
       String name = (String) entity.getProperty("name");
       int emoji = Math.toIntExact( (long) entity.getProperty("emoji"));
       long timestamp = (long) entity.getProperty("timestamp");
+      double sentimentScore = (double) entity.getProperty("sentimentScore");
 
-      Comment newComment = new Comment(key, id, title, name, emoji, timestamp);
+      Comment newComment = new Comment(key, id, title, name, emoji, timestamp, sentimentScore);
       comments.add(newComment);
     }
 

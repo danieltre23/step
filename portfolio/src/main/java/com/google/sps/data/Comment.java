@@ -8,13 +8,15 @@ public final class Comment {
   private final String name;
   private final int emoji;
   private final long timestamp;
+  private final double sentimentScore;
 
-  public Comment(String key, long id, String text, String name, int emoji, long timestamp) {
+  public Comment(String key, long id, String text, String name, int emoji, long timestamp, double sentimentScore) {
     this.key = key;
     this.id = id;
     this.text = text;
     this.name = name;
     this.emoji = emoji;
     this.timestamp = timestamp;
+    this.sentimentScore = sentimentScore;
   }
 }
