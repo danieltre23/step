@@ -187,14 +187,16 @@
             <a class="btn btn-dark" id="loginBtn">Login to comment</a>
         </div>
     </div>
-    <div id="commentForm" class="text-center padding-10-px">
+    <div id="commentFormDiv" class="text-center padding-10-px">
         <div class="media padding-10-px justify-center">
-            <form action="/data" method="POST" class="width-80-pc">
+            <form id="commentForm" method="POST" class="width-80-pc" enctype="multipart/form-data">
                 <div class='media-body'>
                     <input id="hiddenUser" name="name" type="hidden">
                     <input id="commentUser" disabled class="form-control margin-10-top-bottom">
                     <textarea value="cool" required name="comment" class="form-control margin-10-top-bottom" rows="3" placeholder="Comment..."></textarea>
                 </div>
+                <p>Upload an image:</p>
+                <input type="file" name="image">
                 <div class="justify-center">
                     <input class="btn btn-dark" type="submit" />
                 </div>
