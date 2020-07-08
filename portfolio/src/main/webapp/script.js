@@ -30,15 +30,17 @@ function fetchFunction() {
         assginCommentsToUI();
 
         if (!data.user) {
-            document.getElementById('commentForm').setAttribute('class', 'hide');
+            document.getElementById('commentFormDiv').setAttribute('class', 'hide');
             document.getElementById('loginBtn').setAttribute('href', data.url);
         } else {
             document.getElementById("commentUser").value = data.user;
             document.getElementById("hiddenUser").value = data.user;
-            document.getElementById('commentForm').setAttribute('class', 'text-center padding-10-px');
+            document.getElementById('commentFormDiv').setAttribute('class', 'text-center padding-10-px');
             document.getElementById('loginDiv').setAttribute('class', 'hide');
             document.getElementById('logoutBtn').setAttribute('href', data.url);
         }
+
+        document.getElementById("commentForm").action = data.uploadImageUrl;
 
     })
 }
@@ -63,7 +65,7 @@ function assginCommentsToUI() {
     }
 }
 
-function createNewElement({key, emoji, name, text, id}) {
+function createNewElement({key, emoji, name, text, id, imageUrl}) {
     const newElement = document.createElement('div');
     newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);
@@ -74,6 +76,7 @@ function createNewElement({key, emoji, name, text, id}) {
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
+            ${imageUrl ? ` <a href="${imageUrl}"> <img src="${imageUrl}"/> <a/>` : null}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
             <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>
