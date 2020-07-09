@@ -69,9 +69,9 @@ function createNewElement({key, name, text, id, sentimentScore, imageUrl}) {
     const newElement = document.createElement('div');
     newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);
+    const emoji = sentimentScore >= 0.45 ? 'emoji-smile' : (sentimentScore <= -0.45 ? 'emoji-frown' : 'emoji-neutral');
     newElement.innerHTML = `
-        <img class='margin-10-px' ${sentimentScore >= 0.45 ? ("src='icons/emoji-smile.svg'") : 
-            (sentimentScore <= -0.45 ? "src='icons/emoji-frown.svg'" : "src='icons/emoji-neutral.svg'")} 
+        <img class='margin-10-px' src='icons/${emoji}.svg'
             width="32" height="32"/>
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
