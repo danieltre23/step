@@ -49,13 +49,13 @@ function assginCommentsToUI() {
     if (start === 0) {
         document.getElementById('arrowUp').setAttribute('class', 'hide');
     } else {
-        document.getElementById('arrowUp').setAttribute('class', 'justifyCenter');
+        document.getElementById('arrowUp').setAttribute('class', 'justify-center');
     }
     const maxComments = parseInt(document.getElementById('maxComments').value);
     if (commentsArray.length <= start+maxComments) {
         document.getElementById('arrowDown').setAttribute('class', 'hide');
     } else {
-        document.getElementById('arrowDown').setAttribute('class', 'justifyCenter');
+        document.getElementById('arrowDown').setAttribute('class', 'justify-center');
     } 
     const commentsList = document.getElementById('commentsList');
     commentsList.innerHTML = '';
@@ -65,18 +65,18 @@ function assginCommentsToUI() {
     }
 }
 
-function createNewElement({key, emoji, name, text, id, imageUrl}) {
+function createNewElement({key, name, text, id, sentimentScore, imageUrl}) {
     const newElement = document.createElement('div');
     newElement.setAttribute('class', 'media margin-10-px');
     newElement.setAttribute('id', id);
+    const emoji = sentimentScore >= 0.45 ? 'emoji-smile' : (sentimentScore <= -0.45 ? 'emoji-frown' : 'emoji-neutral');
     newElement.innerHTML = `
-        <img class='margin-10-px' ${emoji == 1 ? ("src='icons/emoji-smile.svg'") : 
-            (emoji == 2 ? "src='icons/emoji-neutral.svg'" : "src='icons/emoji-frown.svg'")} 
+        <img class='margin-10-px' src='icons/${emoji}.svg'
             width="32" height="32"/>
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
-            ${imageUrl ? ` <a href="${imageUrl}"> <img src="${imageUrl}"/> <a/>` : null}
+            ${imageUrl ? ` <a href="${imageUrl}"> <img src="${imageUrl}"/> <a/>` : ""}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
             <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>

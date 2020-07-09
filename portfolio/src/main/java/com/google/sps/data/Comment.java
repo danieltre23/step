@@ -6,17 +6,17 @@ public final class Comment {
   private final long id;
   private final String text;
   private final String name;
-  private final int emoji;
   private final long timestamp;
+  private final double sentimentScore;
   private final String imageUrl;
 
-  public Comment(String key, long id, String text, String name, int emoji, long timestamp, String imageUrl) {
+  public Comment(String key, long id, String text, String name, long timestamp, double sentimentScore, String imageUrl) {
     this.key = key;
     this.id = id;
     this.text = text;
     this.name = name;
-    this.emoji = emoji;
     this.timestamp = timestamp;
+    this.sentimentScore = sentimentScore;
     this.imageUrl = imageUrl;
   }
 }

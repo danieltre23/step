@@ -32,6 +32,9 @@ import com.google.sps.data.ServerResponse;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import java.util.Map;
@@ -53,16 +56,20 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String newComment = request.getParameter("comment");
     String name = request.getParameter("name");
-    int emoji = Integer.parseInt(request.getParameter("emoji"));
     long timestamp = System.currentTimeMillis();
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", newComment);
     commentEntity.setProperty("name", name);
-    commentEntity.setProperty("emoji", emoji);
     commentEntity.setProperty("timestamp", timestamp);
 
+    Document doc = Document.newBuilder().setContent(newComment).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    float score = sentiment.getScore();
+    languageService.close();
+    commentEntity.setProperty("sentimentScore", score);
+    
     String imageUrl = getUploadedFileUrl(request, "image");
-
     commentEntity.setProperty("imageUrl", imageUrl);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -84,11 +91,11 @@ public class DataServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("text");
       String name = (String) entity.getProperty("name");
-      int emoji = Math.toIntExact( (long) entity.getProperty("emoji"));
       long timestamp = (long) entity.getProperty("timestamp");
+      double sentimentScore = (double) entity.getProperty("sentimentScore");
       String imageUrl = (String) entity.getProperty("imageUrl");
 
-      Comment newComment = new Comment(key, id, title, name, emoji, timestamp, imageUrl);
+      Comment newComment = new Comment(key, id, title, name, timestamp, sentimentScore, imageUrl);
       comments.add(newComment);
     }
 
