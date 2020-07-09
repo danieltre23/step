@@ -183,3 +183,13 @@ footer {
 .margin-10-top-bottom {
   margin: 10px 0;
 }
+
+#commentForm .file-input{
+  margin-bottom: 10px;
+  text-align: left;
+  width: 250px;
+}
+
+#inputFileLabel {
+  overflow: hidden;
+}

@@ -76,7 +76,7 @@ function createNewElement({key, name, text, id, sentimentScore, imageUrl}) {
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
-            ${imageUrl ? ` <a href="${imageUrl}"> <img src="${imageUrl}"/> <a/>` : ""}
+            ${imageUrl ? `<div class="justify-center"> <a href="${imageUrl}"> <img src="${imageUrl}"/> </a> </div>` : ""}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
             <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>
@@ -113,4 +113,10 @@ function changeCommentPage(forward) {
         start -= maxComments;
     }
     assginCommentsToUI();
+}
+
+
+function changeInputFile() {
+    const fileName = document.getElementById('inputFile').value.split(/(\\|\/)/g).pop();
+    document.getElementById('inputFileLabel').innerHTML = fileName;
 }
