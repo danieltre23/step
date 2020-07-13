@@ -24,8 +24,8 @@ function fetchFunction() {
     fetch('/data').then(response => response.json()).then((data) => {
         commentsArray = data.comments;
         start = 0;
-        if (commentsArray.length === 0) {
-            document.getElementById('commentDependent').setAttribute('class', 'hide');
+        if (commentsArray.length !== 0) {
+            document.getElementById('commentDependent').setAttribute('class', '');
         }
         assginCommentsToUI();
 
@@ -76,7 +76,7 @@ function createNewElement({key, name, text, id, sentimentScore, imageUrl}) {
         <div class='media-body margin-10-px'>
             <h5 class='mt-0'>${name}</h5>
             ${text}
-            ${imageUrl ? `<div class="justify-center"> <a href="${imageUrl}"> <img src="${imageUrl}"/> </a> </div>` : ""}
+            ${imageUrl ? `<div class="justify-center"> <a href="/blob?blob-key=${imageUrl}"> <img class="comment-img" src="/blob?blob-key=${imageUrl}"/> </a> </div>` : ""}
         </div>
         <button class="btn" onClick="deleteCommentByKey('${key}')">
             <img class='auto-margin' src='icons/trash.svg' width="20" height="20"/>

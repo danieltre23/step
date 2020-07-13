@@ -149,7 +149,7 @@
     </div>
   </body>
   <footer>
-    <div class="justify-center" id="arrowUp">
+    <div class="justify-center hide" id="arrowUp">
         <button class="btn" onClick="changeCommentPage(false)">
             <img class='auto-margin' src='icons/arrow-up.svg' width="20" height="20"/>
         </button>
@@ -157,12 +157,12 @@
     <div class="justify-center">
         <div class="width-80-pc" id="commentsList"></div>
     </div>
-    <div class="justify-center" id="arrowDown">
+    <div class="justify-center hide" id="arrowDown">
         <button class="btn" onClick="changeCommentPage(true)">
             <img class='auto-margin' src='icons/arrow-down.svg' width="20" height="20"/>
         </button>
     </div>
-    <div id="commentDependent">
+    <div id="commentDependent" class="hide">
         <div class="comment-num margin-right-10-px">
             <label for="maxComments" class="margin-right-10-px">Number of comments:</label>
             <select class="custom-select margin-right-10-px" id="maxComments" onchange="fetchFunction()">
@@ -182,12 +182,12 @@
             <button class="btn btn-dark" onclick="deleteComments()">Delete all</button>
         </div>
     </div>
-    <div id="loginDiv">
+    <div id="loginDiv" class="hide">
         <div class="justify-center padding-10-px">
             <a class="btn btn-dark" id="loginBtn">Login to comment</a>
         </div>
     </div>
-    <div id="commentFormDiv" class="text-center padding-10-px">
+    <div id="commentFormDiv" class="text-center padding-10-px hide">
         <div class="media padding-10-px justify-center">
             <form id="commentForm" method="POST" class="width-80-pc" enctype="multipart/form-data">
                 <div class='media-body'>
