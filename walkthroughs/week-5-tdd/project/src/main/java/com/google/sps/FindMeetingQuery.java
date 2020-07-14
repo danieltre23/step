@@ -46,7 +46,7 @@ public final class FindMeetingQuery {
     return relevantEvents;
   }
 
-  public Collection<TimeRange> getPossibleTimes(Collection<Event> events, long duration){
+  public Collection<TimeRange> getPossibleTimes(Collection<Event> events, long duration) {
     int meetingStart = 0;
     Collection<TimeRange> possibleTimeRanges = new ArrayList<TimeRange>();
     for (Event event : events) {
