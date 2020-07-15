@@ -21,27 +21,22 @@ import java.util.ArrayList;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    ArrayList<Event> relevantEvents = getRelevantEvents(events, request.getAttendees());
+    Collection<String> allAttendees = new ArrayList<String>(request.getAttendees());
+    allAttendees.addAll(request.getOptionalAttendees());
+    ArrayList<Event> relevantEvents = getRelevantEvents(events, allAttendees);
     Collections.sort(relevantEvents);
-    int meetingStart = 0;
-    Collection<TimeRange> possibleTimeRanges = new ArrayList<TimeRange>();
-    for (Event event : relevantEvents) {
-      int eventStart = event.getWhen().start();
-      int eventEnd = event.getWhen().end();
-      if (eventStart - meetingStart >= request.getDuration()) {
-        possibleTimeRanges.add(TimeRange.fromStartDuration(meetingStart, eventStart - meetingStart));
-      }
-      meetingStart = meetingStart > eventEnd ? meetingStart : eventEnd;
+    Collection<TimeRange> possibleTimeRanges = getPossibleTimes(relevantEvents, request.getDuration());
+    if (possibleTimeRanges.size() != 0 || request.getAttendees().size() == 0) {
+      return possibleTimeRanges;
     }
-    if (24*60 - meetingStart >= request.getDuration()) {
-      possibleTimeRanges.add(TimeRange.fromStartDuration(meetingStart, 24*60 - meetingStart));
-    }
-    return possibleTimeRanges;
+    relevantEvents = getRelevantEvents(relevantEvents, request.getAttendees());
+    Collections.sort(relevantEvents);
+    return getPossibleTimes(relevantEvents, request.getDuration());
   }
 
   public ArrayList<Event> getRelevantEvents(Collection<Event> events, Collection<String> attendees) {
     ArrayList<Event> relevantEvents = new ArrayList<Event>();
-    for (Event event: events) {
+    for (Event event : events) {
       Collection<String> intersection = new HashSet<>(event.getAttendees());
       intersection.retainAll(attendees);
       if (intersection.size() != 0) {
@@ -49,5 +44,22 @@ public final class FindMeetingQuery {
       }
     };
     return relevantEvents;
+  }
+
+  public Collection<TimeRange> getPossibleTimes(Collection<Event> events, long duration) {
+    int meetingStart = 0;
+    Collection<TimeRange> possibleTimeRanges = new ArrayList<TimeRange>();
+    for (Event event : events) {
+      int eventStart = event.getWhen().start();
+      int eventEnd = event.getWhen().end();
+      if (eventStart - meetingStart >= duration) {
+        possibleTimeRanges.add(TimeRange.fromStartDuration(meetingStart, eventStart - meetingStart));
+      }
+      meetingStart = meetingStart > eventEnd ? meetingStart : eventEnd;
+    }
+    if (24*60 - meetingStart >= duration) {
+      possibleTimeRanges.add(TimeRange.fromStartDuration(meetingStart, 24*60 - meetingStart));
+    }
+    return possibleTimeRanges;
   }
 }
